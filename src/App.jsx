@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import io from "socket.io-client";
 import "./App.css";
 import Chat from "./Chat";
-const socket = io.connect("https://chat-server-amber.vercel.app/");
+const socket = io.connect("https://chat-server-amber.vercel.app");
 
 const App = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +11,7 @@ const App = () => {
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       setShowChat(true);
+      console.log(room);
       socket.emit("join-room", room);
     }
   };
@@ -18,6 +19,7 @@ const App = () => {
     <div className="main-container">
       {showChat === false ? (
         <>
+
           <h3>Join Chat</h3>
           <div className="join-chat">
             <input
